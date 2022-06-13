@@ -28,6 +28,16 @@ module Potepanec
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
+    config.generators do |g|
+      g.assets false
+      g.skip_routes false
+      g.test_framework :rspec,
+        controller_specs: false,
+        view_specs: false,
+        helper_specs: false,
+        routing_specs: false
+    end
+
     config.to_prepare do
       # Load application's model / class decorators
       Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
