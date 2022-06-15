@@ -1,10 +1,5 @@
 module ApplicationHelper
-  def page_title(page_title = '')
-    base_title = 'BIGBAG Store'
-    if page_title.empty?
-      base_title
-    else
-      page_title + ' - ' + base_title
-    end
+  def full_title(page_title)
+    page_title.blank? ? "BIGBAG" : "#{page_title} - BIGBAG"
   end
 end
