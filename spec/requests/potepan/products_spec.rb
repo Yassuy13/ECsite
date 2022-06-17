@@ -12,7 +12,11 @@ RSpec.describe "Potepan::Products", type: :request do
       expect(response).to have_http_status(200)
     end
     
-    it "テキストの内容を表示" do
+    it "画像やテキストの内容を表示" do
+      product.images.each do |image|
+        expect(response.body).to include image.attachment(:product)
+        expect(response.body).to include image.attachment(:small)
+      end
       expect(response.body).to include product.name
       expect(response.body).to include product.display_price.to_s
       expect(response.body).to include product.description
