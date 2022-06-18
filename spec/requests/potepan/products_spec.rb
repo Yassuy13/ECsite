@@ -13,7 +13,7 @@ RSpec.describe "Potepan::Products", type: :request do
     end
     
     it "画像やテキストの内容を表示" do
-      product.images.each do |image|
+      product.images.all? do |image|
         expect(response.body).to include image.attachment(:product)
         expect(response.body).to include image.attachment(:small)
       end
