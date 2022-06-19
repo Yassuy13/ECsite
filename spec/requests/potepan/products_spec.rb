@@ -5,7 +5,7 @@ RSpec.describe "Potepan::Products", type: :request do
     let(:product) { create(:product) }
 
     before do
-      get potepan_products_path(product.id)
+      get potepan_product_path(product.id)
     end
 
     it "商品詳細ページの表示" do
