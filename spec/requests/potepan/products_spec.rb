@@ -2,13 +2,14 @@ require 'rails_helper'
 
 RSpec.describe "Potepan::Products", type: :request do
   describe "GET /show" do
+    let(:taxon) { create(:taxon, taxonomy: taxonomy) }
+    let(:taxonomy) { create(:taxonomy) }
     let(:product) { create(:product, taxons: [taxon]) }
-    let(:taxon) { create(:taxon) }
-
+    
     before do
       get potepan_product_path(product.id)
     end
-
+    
     it "商品詳細ページの表示" do
       expect(response).to have_http_status(200)
     end
