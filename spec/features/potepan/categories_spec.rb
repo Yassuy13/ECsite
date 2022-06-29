@@ -5,7 +5,7 @@ RSpec.feature "Potepan::Categories", type: :feature do
   given(:taxon) { create(:taxon, taxonomy: taxonomy, parent: taxonomy.root) }
   given(:product) { create(:product, taxons: [taxon]) }
   given(:image) { build(:image) }
-  given(:test_product) { create(:product) }
+  given!(:test_product) { create(:product) }
   
   background do
     product.images << image
@@ -45,12 +45,15 @@ RSpec.feature "Potepan::Categories", type: :feature do
     end
   end
 
-  scenario "サイドバーのカテゴリーをクリックしたら選択カテゴリー画面へ遷移されること" do
-    within ".side-nav" do
+  scenario "サイドバーのカテゴリーをクリックし、選択した商品画面へ遷移されること" do
+    within ".productsContent" do
       expect(page).to have_content taxonomy.name
       expect(page).to have_content "#{taxon.name} (#{taxon.products.count})"
       click_on "#{taxon.name} (#{taxon.products.count})"
       expect(current_path).to eq potepan_category_path(taxon.id)
+      expect(page).to have_content product.name
+      click_on product.name
+      expect(current_path).to eq potepan_product_path(product.id)
     end
   end
 end
