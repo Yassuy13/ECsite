@@ -16,7 +16,7 @@ RSpec.feature "Potepan::Categories", type: :feature do
     expect(page).to have_title "#{taxon.name} - BIGBAG Store"
   end
   
-  scenario '商品数を正しく表示されていること' do
+  scenario '商品数が正しく表示されていること' do
     expect(page).to have_selector('.productBox', count: taxon.all_products.count)
   end
 
@@ -25,10 +25,11 @@ RSpec.feature "Potepan::Categories", type: :feature do
   end
   
   scenario 'CategoriesまたはBrandのカテゴリー一覧を表示していること' do
-    taxon.leaves.all? do |category|
-      expext(page).to have_content category.id
-      expext(page).to have_content category.name
-      expext(page).to have_content category.products.count
+    within '.side-nav' do
+      taxon.leaves.all? do |taxon|
+        expext(page).to have_content taxon.name
+        expext(page).to have_content taxon.products.count
+      end
     end
   end
 
@@ -45,15 +46,12 @@ RSpec.feature "Potepan::Categories", type: :feature do
     end
   end
 
-  scenario "サイドバーのカテゴリーをクリックし、選択した商品画面へ遷移されること" do
-    within ".productsContent" do
-      expect(page).to have_content taxonomy.name
-      expect(page).to have_content "#{taxon.name} (#{taxon.products.count})"
-      click_on "#{taxon.name} (#{taxon.products.count})"
+  scenario "サイドバーのカテゴリーをクリックし、別のカテゴリーへ遷移されること" do
+    within ".side-nav" do
+      click_on taxonomy.name
+      expect(page).to have_selector "li", text: taxon.name
+      click_on taxon.name
       expect(current_path).to eq potepan_category_path(taxon.id)
-      expect(page).to have_content product.name
-      click_on product.name
-      expect(current_path).to eq potepan_product_path(product.id)
     end
   end
 end

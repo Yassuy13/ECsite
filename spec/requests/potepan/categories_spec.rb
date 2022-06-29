@@ -16,11 +16,6 @@ RSpec.describe "Potepan::Categories", type: :request do
       expect(response).to have_http_status(200)
     end
     
-    it "taxon名の取得" do
-      expect(response.body).to include taxon.name
-      expect(response.body).to include taxon.products.count.to_s
-    end
-    
     it "taxonomy名の取得" do
       expect(response.body).to include taxonomy.name
     end
