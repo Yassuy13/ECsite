@@ -35,11 +35,11 @@
               <ul class="nav navbar-nav side-nav">
                 <% @taxonomies.each do |taxonomy| %>
                   <li>
-                    <a href="javascript:;" data-toggle="collapse" data-target="#<%= taxonomy.name %>"><%= taxonomy.name %><i class="fa fa-plus"></i></a>
-                    <ul id="<%= taxonomy.name %>" class="collapse collapseItem">
-                      <% taxonomy.taxons.leaves.each do |category| %>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#<%= taxonomy.id %>"><%= taxonomy.name %><i class="fa fa-plus"></i></a>
+                    <ul id="<%= taxonomy.id %>" class="collapse collapseItem">
+                      <% taxonomy.taxons.leaves.each do |taxon| %>
                         <li>
-                          <%= link_to potepan_category_path(category.id) do %><i class="fa fa-caret-right" aria-hidden="true"></i><%= category.name %> <span>(<%= category.products.count %>)</span><% end %>
+                          <%= link_to potepan_category_path(taxon.id) do %><i class="fa fa-caret-right" aria-hidden="true"></i><%= taxon.name %> <span>(<%= taxon.products.count %>)</span><% end %>
                         </li>
                       <% end %>
                     </ul>
