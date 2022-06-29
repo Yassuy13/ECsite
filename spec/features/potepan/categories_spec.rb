@@ -5,7 +5,7 @@ RSpec.feature "Potepan::Categories", type: :feature do
   given(:taxon) { create(:taxon, taxonomy: taxonomy, parent: taxonomy.root) }
   given(:product) { create(:product, taxons: [taxon]) }
   given(:image) { build(:image) }
-  given!(:test_product) { create(:product) }
+  given!(:differ_product) { create(:product) }
   
   background do
     product.images << image
@@ -40,9 +40,7 @@ RSpec.feature "Potepan::Categories", type: :feature do
 
   it '関連しない商品が表示されないこと' do
     within '.products_test' do
-      expect(page).to have_content product.name
-      expect(page).to have_content product.display_price
-      expect(page).not_to have_content test_product.name
+      expect(page).not_to have_content differ_product.name
     end
   end
 

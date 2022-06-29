@@ -12,11 +12,11 @@ RSpec.describe "Potepan::Categories", type: :request do
       get potepan_category_path(taxon.id)
     end
     
-    it "商品カテゴリーページの表示" do
+    it "200レスポンスが返ってくること" do
       expect(response).to have_http_status(200)
     end
     
-    it "taxonomy名の取得" do
+    it "taxonomy名の取得できていること" do
       expect(response.body).to include taxonomy.name
     end
 

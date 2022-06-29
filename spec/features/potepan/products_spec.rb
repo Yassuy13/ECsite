@@ -4,8 +4,10 @@ RSpec.feature "Potepan::Products", type: :feature do
   given(:taxon) { create(:taxon, taxonomy: taxonomy) }
   given(:taxonomy) { create(:taxonomy) }
   given(:product) { create(:product, taxons: [taxon]) }
-  
+  given(:image) { build(:image) }
+
   background do
+    product.images << image
     visit potepan_product_path(product.id)
   end
   
@@ -19,7 +21,8 @@ RSpec.feature "Potepan::Products", type: :feature do
     expect(page).to have_selector ".media-body p", text: product.description
   end
   
-  scenario '一覧ページへ戻るをクリックしたら商品カテゴリーページへ移動されること' do
-    expect(page).to have_link '一覧ページへ戻る', href: potepan_category_path(product.taxons.first.id)
+  scenario '一覧ページへ戻るをクリックしたら、その商品のカテゴリーページへ移動されること' do
+    click_on '一覧ページへ戻る'
+    expect(current_path).to eq potepan_category_path(product.taxons.first.id)
   end
 end
