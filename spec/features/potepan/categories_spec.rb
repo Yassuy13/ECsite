@@ -48,6 +48,8 @@ RSpec.feature "Potepan::Categories", type: :feature do
     within ".side-nav" do
       click_on taxonomy.name
       expect(page).to have_selector "li", text: taxon.name
+      click_link "Ruby"
+      expect(current_path).to eq potepan_category_path(taxon.id)
       click_on taxon.name
       expect(current_path).to eq potepan_category_path(taxon.id)
     end
