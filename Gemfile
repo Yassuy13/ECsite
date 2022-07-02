@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 ruby '~> 2.7.3'
@@ -35,14 +37,13 @@ gem 'jbuilder', '~> 2.11'
 gem 'paypalhttp', '~> 1.0'
 gem 'solidus', '~> 2.11.0'
 gem 'solidus_auth_devise'
-gem 'solidus_auth_devise'
 gem 'solidus_i18n', github: 'solidusio-contrib/solidus_i18n', branch: 'master'
 gem 'solidus_paypal_commerce_platform'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'annotate'
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'byebug', platforms: %i(mri mingw x64_mingw)
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'pry-byebug'
@@ -50,7 +51,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rails-erd'
   gem 'rspec-rails'
-  gem 'rubocop-airbnb'
 end
 
 group :development do
@@ -58,12 +58,13 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 4.0'
   gem 'web-console', '>= 4.1.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'rubocop-airbnb'
+  gem 'rubocop', require: false
+  gem 'rubocop-airbnb', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw jruby)
 
 gem 'aws-sdk', '~> 3.0'

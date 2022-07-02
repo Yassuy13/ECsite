@@ -17,4 +17,16 @@ AllCops:
     - 'path/ruby'
 
 Metrics/LineLength:
-  Max: 120
+  Max: 200
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false

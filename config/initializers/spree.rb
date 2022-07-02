@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Configure Solidus Preferences
 # See http://docs.solidus.io/Spree/AppConfiguration.html for details
 

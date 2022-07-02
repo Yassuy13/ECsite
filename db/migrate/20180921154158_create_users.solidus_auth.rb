@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from solidus_auth (originally 20101026184949)
 class CreateUsers < SolidusSupport::Migration[4.2]
   def up

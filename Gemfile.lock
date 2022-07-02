@@ -1566,6 +1566,7 @@ DEPENDENCIES
   rails (~> 6.1)
   rails-erd
   rspec-rails
+  rubocop
   rubocop-airbnb
   sass-rails (~> 6.0)
   solidus (~> 2.11.0)

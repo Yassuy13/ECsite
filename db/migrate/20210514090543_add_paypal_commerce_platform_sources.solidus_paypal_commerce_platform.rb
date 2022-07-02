@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from solidus_paypal_commerce_platform (originally 20200521190038)
 class AddPaypalCommercePlatformSources < ActiveRecord::Migration[5.2]
   def change

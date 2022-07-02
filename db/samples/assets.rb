@@ -15,7 +15,7 @@ products[:ruby_mug] = Spree::Product.find_by!(name: 'Ruby Mug')
 products[:solidus_tote] = Spree::Product.find_by!(name: 'Solidus Tote')
 
 def image(name, type = 'jpg')
-  images_path = Pathname.new(File.dirname(__FILE__)) + 'images'
+  images_path = "#{Pathname.new(File.dirname(__FILE__))}images"
   path = images_path + "#{name}.#{type}"
 
   return false unless File.exist?(path)
