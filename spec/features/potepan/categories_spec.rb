@@ -46,14 +46,20 @@ RSpec.feature 'Potepan::Categories', type: :feature do
     end
   end
 
-  scenario 'サイドバーのカテゴリーをクリックし、別のカテゴリーへ遷移されること' do
-    within '.side-nav' do
-      click_on taxonomy.name
-      expect(page).to have_selector 'li', text: taxon.name
-      click_link 'Ruby'
-      expect(current_path).to eq potepan_category_path(taxon.id)
-      click_on taxon.name
-      expect(current_path).to eq potepan_category_path(taxon.id)
+  context "別のtaxonが存在している時" do
+    let!(:another_taxon) { create(:taxon, name: 'Another Taxon', taxonomy: taxonomy, parent: taxonomy.root) }
+
+    before do
+      visit potepan_category_path(another_taxon.id)
+    end
+
+    scenario 'サイドバーのカテゴリーをクリックし、別のカテゴリーへ遷移されること' do
+      within '.side-nav' do
+        click_on taxonomy.name
+        expect(page).to have_selector 'li', text: taxon.name
+        click_on taxon.name
+        expect(current_path).to eq potepan_category_path(taxon.id)
+      end
     end
   end
 end
