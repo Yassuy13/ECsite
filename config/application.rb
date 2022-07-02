@@ -1,6 +1,6 @@
 require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Potepanec
   class Application < Rails::Application
     # Load application's model / class decorators
-    initializer 'spree.decorators' do |app|
+    initializer 'spree.decorators' do |_app|
       config.to_prepare do
         Dir.glob(Rails.root.join('app/**/*_decorator*.rb')) do |path|
           require_dependency(path)
@@ -18,7 +18,7 @@ module Potepanec
     end
 
     # Load application's view overrides
-    initializer 'spree.overrides' do |app|
+    initializer 'spree.overrides' do |_app|
       config.to_prepare do
         Dir.glob(Rails.root.join('app/overrides/*.rb')) do |path|
           require_dependency(path)
@@ -32,20 +32,20 @@ module Potepanec
       g.assets false
       g.skip_routes false
       g.test_framework :rspec,
-        controller_specs: false,
-        view_specs: false,
-        helper_specs: false,
-        routing_specs: false
+                       controller_specs: false,
+                       view_specs: false,
+                       helper_specs: false,
+                       routing_specs: false
     end
 
     config.to_prepare do
       # Load application's model / class decorators
-      Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
+      Dir.glob(File.join(File.dirname(__FILE__), '../app/**/*_decorator*.rb')) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
 
       # Load application's view overrides
-      Dir.glob(File.join(File.dirname(__FILE__), "../app/overrides/*.rb")) do |c|
+      Dir.glob(File.join(File.dirname(__FILE__), '../app/overrides/*.rb')) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
     end

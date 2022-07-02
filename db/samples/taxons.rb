@@ -1,21 +1,21 @@
 # frozen_string_literal: true
 
-Spree::Sample.load_sample("taxonomies")
-Spree::Sample.load_sample("products")
+Spree::Sample.load_sample('taxonomies')
+Spree::Sample.load_sample('products')
 
-categories = Spree::Taxonomy.find_by!(name: "Categories")
-brands = Spree::Taxonomy.find_by!(name: "Brand")
+categories = Spree::Taxonomy.find_by!(name: 'Categories')
+brands = Spree::Taxonomy.find_by!(name: 'Brand')
 
 products = {
-  solidus_tshirt: "Solidus T-Shirt",
-  solidus_tote: "Solidus Tote",
-  solidus_snapback_cap: "Solidus Snapback Cap",
-  solidus_hoodie: "Solidus Hoodie Zip",
-  ruby_hoodie: "Ruby Hoodie",
-  ruby_hoodie_zip: "Ruby Hoodie Zip",
-  ruby_polo: "Ruby Polo",
-  ruby_mug: "Ruby Mug",
-  solidus_girly: "Solidus Girly"
+  solidus_tshirt: 'Solidus T-Shirt',
+  solidus_tote: 'Solidus Tote',
+  solidus_snapback_cap: 'Solidus Snapback Cap',
+  solidus_hoodie: 'Solidus Hoodie Zip',
+  ruby_hoodie: 'Ruby Hoodie',
+  ruby_hoodie_zip: 'Ruby Hoodie Zip',
+  ruby_polo: 'Ruby Polo',
+  ruby_mug: 'Ruby Mug',
+  solidus_girly: 'Solidus Girly'
 }
 
 products.each do |key, name|
@@ -24,46 +24,46 @@ end
 
 taxons = [
   {
-    name: "Categories",
+    name: 'Categories',
     taxonomy: categories,
     position: 0
   },
   {
-    name: "Clothing",
+    name: 'Clothing',
     taxonomy: categories,
-    parent: "Categories"
+    parent: 'Categories'
   },
   {
-    name: "Caps",
+    name: 'Caps',
     taxonomy: categories,
-    parent: "Categories",
+    parent: 'Categories',
     position: 1,
     products: [
       products[:solidus_snapback_cap]
     ]
   },
   {
-    name: "Bags",
+    name: 'Bags',
     taxonomy: categories,
-    parent: "Categories",
+    parent: 'Categories',
     position: 2,
     products: [
       products[:solidus_tote]
     ]
   },
   {
-    name: "Mugs",
+    name: 'Mugs',
     taxonomy: categories,
-    parent: "Categories",
+    parent: 'Categories',
     position: 3,
     products: [
       products[:ruby_mug]
     ]
   },
   {
-    name: "Shirts",
+    name: 'Shirts',
     taxonomy: categories,
-    parent: "Clothing",
+    parent: 'Clothing',
     position: 0,
     products: [
       products[:ruby_polo],
@@ -71,9 +71,9 @@ taxons = [
     ]
   },
   {
-    name: "Hoodie",
+    name: 'Hoodie',
     taxonomy: categories,
-    parent: "Clothing",
+    parent: 'Clothing',
     position: 0,
     products: [
       products[:solidus_hoodie],
@@ -82,22 +82,22 @@ taxons = [
     ]
   },
   {
-    name: "T-Shirts",
+    name: 'T-Shirts',
     taxonomy: categories,
-    parent: "Clothing",
+    parent: 'Clothing',
     products: [
       products[:solidus_tshirt]
     ],
     position: 0
   },
   {
-    name: "Brands",
+    name: 'Brands',
     taxonomy: brands
   },
   {
-    name: "Solidus",
+    name: 'Solidus',
     taxonomy: brands,
-    parent: "Brand",
+    parent: 'Brand',
     products: [
       products[:solidus_tshirt],
       products[:solidus_snapback_cap],
@@ -107,9 +107,9 @@ taxons = [
     ]
   },
   {
-    name: "Ruby",
+    name: 'Ruby',
     taxonomy: brands,
-    parent: "Brand",
+    parent: 'Brand',
     products: [
       products[:ruby_hoodie],
       products[:ruby_hoodie_zip],

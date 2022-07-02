@@ -17,7 +17,7 @@ class AddAmountRemainingToStoreCreditEvents < ActiveRecord::Migration[5.0]
   end
 
   class StoreCreditEvent < ActiveRecord::Base
-    self.table_name = "spree_store_credit_events"
+    self.table_name = 'spree_store_credit_events'
     belongs_to :store_credit
 
     scope :chronological, -> { order(:created_at) }
