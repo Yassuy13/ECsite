@@ -4,9 +4,9 @@ require 'rails_helper'
 
 RSpec.describe 'Potepan::Products', type: :request do
   describe 'GET /show' do
-    let(:taxon) { create(:taxon, taxonomy: taxonomy) }
-    let(:taxonomy) { create(:taxonomy) }
+    let(:taxon) { create(:taxon) }
     let(:product) { create(:product, taxons: [taxon]) }
+    let(:related_product) { create_list(:product, 4, taxons: [taxon]) }
 
     before do
       get potepan_product_path(product.id)
@@ -20,6 +20,15 @@ RSpec.describe 'Potepan::Products', type: :request do
       expect(response.body).to include product.name
       expect(response.body).to include product.display_price.to_s
       expect(response.body).to include product.description
+    end
+
+    it "関連商品名が含まれていること" do
+      within ".related_test" do
+        expect(response.body).to include related_product[0].name
+        expect(response.body).to include related_product[1].name
+        expect(response.body).to include related_product[2].name
+        expect(response.body).to include related_product[3].name
+      end
     end
   end
 end
