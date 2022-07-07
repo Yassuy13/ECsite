@@ -17,7 +17,7 @@ default: &default
   host: <%= ENV['MYSQL_HOST'] || 'localhost' %>
   username: <%= ENV['MYSQL_USERNAME'] || 'root' %>
   password: <%= ENV['MYSQL_PASSWORD'] || '' %>
-  socket: /var/lib/mysql/mysql.sock
+  socket: /tmp/mysql.sock
 
 development:
   <<: *default
@@ -51,4 +51,4 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL']&.sub('mysql://', 'mysql2://') %>
+  url: <%= ENV['JAWSDB_URL']&.sub('mysql://', 'mysql2://') %>
